@@ -1,0 +1,95 @@
+<!-- Shoping Cart Section Begin -->
+<section class="shoping-cart spad">
+    <div class="container">
+        {{# if ordered}}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                        <h3 style="text-align: center; margin-bottom: 30px;">ĐƠN HÀNG</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th >Ảnh</th>
+                                <th >Tên sách</th>
+                                <th >Tình trạng</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {{# each ordered}}
+                            <tr>
+                                <td class="shoping__cart__item">
+                                    <img src={{this.product_img}} alt="">
+                                </td>
+                                <td class="shoping__cart_item_name">
+                                    {{this.product_name}}
+                                </td>
+                                <td class="shoping__cart_item_status">
+                                    {{this.status_name}}
+                                </td>
+                                <td class="shoping__cart__price">
+                                    {{format this.unit_price}}
+                                </td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="_pro-qty">
+                                            <input type="text" class="pro-qty" disabled value="{{this.quantity}} ">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="shoping__cart__total">
+                                    {{format this.total}}
+                                </td>
+                            </tr>
+                            {{/ each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <ul>
+                        <li>TỔNG TIỀN THANH TOÁN<span>{{format totalOrder}}</span></li>
+                    </ul>
+                    <ul>
+                        <li> <a href="/shop" class="primary-btn">ĐẾN CỬA HÀNG</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{ else }}
+        <div class="container-fluid  mt-100">
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Đơn hàng</h5>
+                        </div>
+                        <div class="card-body cart">
+                            <div class="col-sm-12 empty-cart-cls text-center">
+                                <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+                                    class="img-fluid mb-4 mr-3">
+                                <h3><strong>Chưa có đơn hàng nào</strong></h3>
+                                <h4></h4>
+                                <a href="/shop" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Đến giỏ
+                                    hàng
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/ if}}
+    </div>
+</section>
+<!-- Shoping Cart Section End -->

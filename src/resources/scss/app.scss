@@ -1,7 +1,6 @@
-
 @import 'variables';
 .test {
-    font-size: 1 rem;
+    font-size: 40 rem;
     background-color: $red-color;
     width: 100px;
 }
@@ -10,5 +9,16 @@ h1 {
     color: $red_color;
 }
 h2 {
-    color: green;
+    color: gray;
 }
+
+.card-customer-item {
+    margin-top: 16px;
+    margin-left: 100px;
+}
+
+.checkbox-select-all-options {
+    width : 1200px;
+    margin: 14px 0;
+}
+

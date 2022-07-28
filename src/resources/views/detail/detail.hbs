@@ -1,0 +1,280 @@
+<link rel="stylesheet" href="/detail/detail.css">
+<link rel="stylesheet" href="/detail/comment.css">
+<!-- Product Details Section Begin -->
+
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-7">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large" src="{{Detail.product_img}}" alt="">
+                    </div>
+                    <div class="product__details__pic__slider owl-carousel">
+                        <img data-imgbigurl="img/product/details/product-details-2.jpg"
+                            src="img/product/details/thumb-1.jpg" alt="">
+                        <img data-imgbigurl="img/product/details/product-details-3.jpg"
+                            src="img/product/details/thumb-2.jpg" alt="">
+                        <img data-imgbigurl="img/product/details/product-details-5.jpg"
+                            src="img/product/details/thumb-3.jpg" alt="">
+                        <img data-imgbigurl="img/product/details/product-details-4.jpg"
+                            src="img/product/details/thumb-4.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>{{Detail.product_name}}</h3>
+                    <div class="product__details__rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <span>(18 reviews)</span>
+                    </div>
+                    <div class="product__details__price">{{format Detail.list_price }}</div>
+                    <p>Tác giả: {{Detail.author}}</p>
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/shopping-cart/add-to-cart/{{Detail.id}}" class="primary-btn">Thêm vào giỏ hàng</a>
+                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                    <ul>
+                        <li><b>Số lượng còn</b> <span>{{Detail.quantity_per_unit}}</span></li>
+                        <li><b>Thể loại</b> <span>{{Detail.name_cate}}</span></li>
+                        <li><b>Nặng</b> <span>0.5 kg</span></li>
+                        <li><b>Liên kết</b>
+                            <div class="share">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card__ctn">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-2"> <img src="{{user.image_user}}" width="50" class="rounded-circle mt-2">
+                        </div>
+                        <div class="col-10">
+                            <form action="/detail/comment" method="post">
+                                <div class="comment-box ml-2">
+                                    <h4>Đánh giá cuốn sách</h4>
+                                    <input type="hidden" name="id_User" value="{{user.id}}">
+                                    <input type="hidden" name="id_Product" value="{{Detail.id}}">
+                                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label
+                                            for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label
+                                            for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                            for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                            for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label
+                                            for="1">☆</label> </div>
+                                    <div class="comment-area"><textarea name="comment" class="form-control"
+                                            placeholder="Nhập đánh giá của bạn..." rows="4"></textarea>
+                                        <div class="comment-btns mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="pull-left"> <button
+                                                            class="btn btn-success btn-sm">Hủy</button> </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="pull-right"> <button type="submit"
+                                                            class="btn btn-success send btn-sm">Gửi <i
+                                                                class="fa fa-long-arrow-right ml-1"></i></button> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                aria-selected="true">Đánh giá</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="false">Mô
+                                tả</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                aria-selected="false">Reviews <span>(1)</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="container-fluid px-1 py-5 mx-auto">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl col-lg col-md col text-center mb">
+                                        {{#if isComment}}
+                                        <div class="card">
+                                            <div class="row justify-content-left d-flex">
+                                                <div class="col-md-4 d-flex flex-column">
+                                                    <div class="rating-box">
+                                                        <h1 class="pt-4">4.0</h1>
+                                                        <p class="">Trên 5</p>
+                                                    </div>
+                                                    <div> <span class="fa fa-star star-active mx-1"></span> <span
+                                                            class="fa fa-star star-active mx-1"></span> <span
+                                                            class="fa fa-star star-active mx-1"></span> <span
+                                                            class="fa fa-star star-active mx-1"></span> <span
+                                                            class="fa fa-star star-inactive mx-1"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="rating-bar0 justify-content-center">
+                                                        <table class="text-left mx-auto">
+                                                            <tr>
+                                                                <td class="rating-label">5 sao</td>
+                                                                <td class="rating-bar">
+                                                                    <div class="bar-container">
+                                                                        <div class="bar-5"></div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-right">123</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="rating-label">4 sao</td>
+                                                                <td class="rating-bar">
+                                                                    <div class="bar-container">
+                                                                        <div class="bar-4"></div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-right">100</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="rating-label">3 sao</td>
+                                                                <td class="rating-bar">
+                                                                    <div class="bar-container">
+                                                                        <div class="bar-3"></div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-right">10</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="rating-label">2 sao</td>
+                                                                <td class="rating-bar">
+                                                                    <div class="bar-container">
+                                                                        <div class="bar-2"></div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-right">3</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="rating-label">1 sao</td>
+                                                                <td class="rating-bar">
+                                                                    <div class="bar-container">
+                                                                        <div class="bar-1"></div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-right">0</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{#each Comment}}
+                                        <div class="card">
+                                            <div class="row d-flex">
+                                                <div class=""> <img class="profile-pic" src="{{this.image_user}}">
+                                                </div>
+                                                <div class="d-flex flex-column">
+                                                    <h3 class="mt-2 mb-0">{{this.last_name }} {{this.first_name }} </h3>
+                                                    <div>
+                                                        <p class="text-left">
+                                                            <span class="text-muted">{{this.rate}}.0</span>
+                                                            <span
+                                                                class="fa fa-star star-{{stars 1 this.rate}} ml-3"></span>
+                                                            <span class="fa fa-star star-{{stars 2 this.rate}}"></span>
+                                                            <span class="fa fa-star star-{{stars 3 this.rate}}"></span>
+                                                            <span class="fa fa-star star-{{stars 4 this.rate}}"></span>
+                                                            <span class="fa fa-star star-{{stars 5 this.rate}}">
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-auto">
+                                                    <p class="text-muted pt-5 pt-sm-3">{{this.createAt}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row text-left">
+                                                <p class="content">
+                                                    {{this.comment}}
+                                                </p>
+                                            </div>
+                                            <div class="row text-left">
+                                                <img class="pic" src="{{this.product_img}}">
+                                            </div>
+                                            <div class="row text-left mt-4">
+                                                <div class="like mr-3 vote"> <img
+                                                        src="https://i.imgur.com/mHSQOaX.png"><span
+                                                        class="blue-text pl-2">20</span> </div>
+                                                <div class="unlike vote"> <img
+                                                        src="https://i.imgur.com/bFBO3J7.png"><span
+                                                        class="text-muted pl-2">4</span> </div>
+                                            </div>
+                                        </div>
+                                        {{/each}}
+                                        {{else}}
+                                        <h2>Không có đánh giá</h2>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Thông tin</h6>
+                                <p>Cuốn sách đầu tiên của loài người là những cuốn sách cổ Ai Cập xuất hiện vào thế kỷ
+                                    25 trước công nguyên. Sách được viết trên giấy chỉ thảo cuộc thành ống. Sau những
+                                    cuốn sách cổ Ai Cập là sách chép tay ở Trung Quốc vào thế kỷ thứ 9 trước công
+                                    nguyên.
+
+                                    Sự ra đời của sách gắn liền với lịch sử phát triển chữ viết và ngôn ngữ, khoa học kỹ
+                                    thuật, văn học,..bắt nguồn từ những dòng chữ ghi chép trên đá, thân cây, lá cây,
+                                    trên xương, đất sét và sau đó là trên giấy chỉ thảo (pa-pi-rút).
+
+                                    Đến thế ký thứ 9, thời kỳ văn minh cổ Trung Quốc, người ta bắt đầu in sách trên bản
+                                    khắc gỗ, sau đó in trên đất sét, đồng thau với kỹ thuật thủ công. Đến thế kỷ 15,
+                                    sách in theo kiểu sắp chữ ra đời ở Châu Âu (1440) đã đánh dấu thời kỳ phát triển
+                                    mạnh mẽ của nghệ thuật in ấn.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Vai trò</h6>
+                                <p>Từ xưa đến nay, sách luôn được coi là một người bạn lớn của con người, có lẽ chính
+                                    bởi sách có vai trò hết sức to lớn đối với đời sống nhân loại. Nhân loại sẽ không
+                                    thế tiến bộ được nếu như không có sách. Có thể nói rằng sách chính là linh hồn bất
+                                    tử mà nhân loại đã gửi lại cho hậu thế. Dưới đây là một số vai trò của sách đối với
+                                    sự tiến bộ của con người: </p>
+                                    <p>
+                                    Sách giúp con người giao lưu với thế giới bên ngoài, sách lưu trữ những thông tin,
+                                    những giá trị vật chất và tinh thần của nhân loại. Như vật, sách chứa đựng toàn bộ
+                                    những giá trị nhân loại trong quá khứ cũng như trong hiện tại, để các thể hệ sau
+                                    tiếp nối và phát triển. Sách mở rộng trước mắt ta những chân trời mới. Không phải là
+                                    kiểu viễn tưởng như cánh cửa kì diệu của Doraemon, tri thức có ở trong sách thực sự
+                                    là một chân trời mới, mở ra một trang sách là mở ra một thế giới.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->

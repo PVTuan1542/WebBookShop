@@ -1,0 +1,125 @@
+<div>
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="categories__slider owl-carousel">
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="/img/categories/cat-1.jpg">
+                            <h5><a href="/categorys?cate=137">Sách kỹ năng</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="/img/categories/cat-2.jpg">
+                            <h5><a href="/categorys?cate=139">Sách hot</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="/img/categories/cat-3.jpg">
+                            <h5><a href="/categorys?cate=141">Sách thiếu nhi</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="/img/categories/cat-4.jpg">
+                            <h5><a href="/categorys?cate=142">Chuyên nghành</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="/img/categories/cat-5.jpg">
+                            <h5><a href="/categorys?cate=138">Sách kinh tế</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Featured Section Begin -->
+    <section class="featured featured__search spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>{{titleCate}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row featured__filter">
+                {{#each Products}}
+                <div class="product__item__hover__full col-lg-3 col-md-4 col-sm-6 mix {{this.cate_name}} vegetables">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg" data-setbg="">
+                            <a href="/detail/{{this.id}}"><img src="{{this.product_img}}" alt="" width="204"
+                                    height="300"></a>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="/shopping-cart/add-to-cart/{{this.id}}"><i
+                                            class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <div class="featured__item__text__name">
+                                <h6><a href="/detail/{{this.id}}">{{this.product_name}}</a></h6>
+                            </div>
+                            <div class="product_item_text_monney">
+                                <span class="real_price">{{format this.list_price}}</span>
+                                <span class="facker_price">
+                                    {{format this.fake_price}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{#if data.isOnePage }}
+        <div class="product__pagination product__pagination__home ">
+            <a href="/categorys?cate={{cateId}}&page={{sub data.pageNow 1}}&limit=16"><i
+                    class="fa fa-long-arrow-left"></i></a>
+            <a id="product_page_1" href="/categorys?cate={{cateId}}&txtSearch={{cateId}}&page=1&limit=16">1</a>
+            <a id="product_page_2" href="/categorys?cate={{cateId}}&page=2&limit=16">2</a>
+            <a id="product_page_3" href="/categorys?cate={{cateId}}&page=3&limit=16">3</a>
+            {{#if data.isFour}}
+            <span>.</span>
+            <span style="margin-right: 16px ;">.</span>
+            <a id="product_page_{{data.pageNow}}"
+                href="/categorys?cate={{cateId}}&page={{data.pageNow}}&limit=16">{{data.pageNow}}</a>
+            {{/if}}
+
+            {{#if data.isNearTotalPage}}
+            <span>.</span>
+            <span style="margin-right: 16px ;">.</span>
+            {{/if}}
+            {{#if data.isTotalPage}}
+            <a href="/categorys?cate={{cateId}}&page={{data.totalPage}}&limit=16">{{data.totalPage}}</a>
+            <a href="/categorys?cate={{cateId}}&page={{sum data.pageNow 1}}&limit=16"><i
+                    class="fa fa-long-arrow-right"></i></a>
+            {{/if}}
+        </div>
+        {{/if}}
+    </section>
+    <!-- Featured Section End -->
+
+</div>
+
+<script>
+    let current_url = document.location;
+    document.querySelectorAll(".header__menu .active").forEach(function (e) {
+        if (e.href == current_url) {
+            e.classList += " current";
+        }
+    });
+</script>
+<script>
+    var button = document.getElementById('home_nav');
+    button.addEventListener('click', function (e) {
+        button.style.backgroundColor = "red";
+    });
+</script>
+<script>
+    document.getElementById('nav_home1').style.color = '#7FAD39';
+    document.getElementById('nav_home2').style.color = '#7FAD39';
+    var e = "product_page_" + {{ data.pageNow }};
+    document.getElementById(e).style.backgroundColor = '#7FAD39';
+</script>
